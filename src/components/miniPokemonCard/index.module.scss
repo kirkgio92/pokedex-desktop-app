@@ -1,0 +1,36 @@
+.MiniPokemonCard {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  border-bottom: 1px solid black;
+
+  .pokemonImage {
+    margin: 8px;
+  }
+
+  .infoWrapper {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    text-align: left;
+    gap: 2px;
+    margin: 0;
+    border-left: 1px solid black;
+    padding-left: 8px;
+
+    p,
+    h4 {
+      margin: 0;
+    }
+
+    .typesWrapper {
+      display: flex;
+      gap: 4px;
+      margin: 0;
+
+      img {
+        margin: 0;
+      }
+    }
+  }
+}

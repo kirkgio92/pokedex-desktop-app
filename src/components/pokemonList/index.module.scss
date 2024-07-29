@@ -1,0 +1,17 @@
+.PokemonList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 25%;
+  margin: 0;
+  padding: 12px;
+  background-color: #f7f4f3;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 24px;
+  overflow-y: hidden;
+  height: 800px;
+
+  &:hover {
+    overflow-y: scroll;
+  }
+}
