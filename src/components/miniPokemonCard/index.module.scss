@@ -1,8 +1,9 @@
 .MiniPokemonCard {
   display: flex;
+  width: 100%;
   align-items: center;
   margin: 0;
-  border-bottom: 1px solid black;
+  border: 2px solid red;
 
   .pokemonImage {
     margin: 8px;
@@ -13,9 +14,8 @@
     flex-direction: column;
     align-content: flex-start;
     text-align: left;
-    gap: 2px;
+    gap: 12px;
     margin: 0;
-    border-left: 1px solid black;
     padding-left: 8px;
 
     p,

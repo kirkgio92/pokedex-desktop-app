@@ -1,8 +1,56 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.scss";
-import PokemonList from "@/components/pokemonList";
+import { fetchRegions } from "@/lib/pokeapi";
+import { useState, useEffect } from "react";
+import { fetchTypes, fetchPokemonDetails } from "@/lib/pokeapi";
+import MiniPokemonCard from "@/components/miniPokemonCard";
 
 export default function Home() {
+  const [randomPokemon1, setRandomPokemon1] = useState(null);
+  const [randomPokemon2, setRandomPokemon2] = useState(null);
+
+  const fetchRandomPokemon = async () => {
+    const randomPokemonID1 = Math.floor(Math.random() * 898) + 1;
+    const randomPokemonID2 = Math.floor(Math.random() * 898) + 1;
+
+    try {
+      const [data1, data2] = await Promise.all([
+        fetchPokemonDetails(randomPokemonID1),
+        fetchPokemonDetails(randomPokemonID2),
+      ]);
+      setRandomPokemon1(data1);
+      setRandomPokemon2(data2);
+    } catch (error) {
+      console.error("Failed to fetch Pokémon details:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchRandomPokemon();
+    const interval = setInterval(fetchRandomPokemon, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // const [regions, setRegions] = useState([]);
+  // const [types, setTypes] = useState([]);
+
+  // useEffect(() => {
+  //   const getRegions = async () => {
+  //     const data = await fetchRegions();
+  //     setRegions(data);
+  //   };
+  //   getRegions();
+  // }, []);
+
+  // useEffect(() => {
+  //   const getTypes = async () => {
+  //     const data = await fetchTypes();
+  //     setTypes(data);
+  //   };
+  //   getTypes();
+  // }, []);
+
   return (
     <>
       <Head>
@@ -12,7 +60,28 @@ export default function Home() {
         <link rel="icon" href="/pokeball.png" />
       </Head>
       <main className={styles.Main}>
-        <PokemonList />
+        <h1>Random Pokémon</h1>
+        <div className={styles.PokemonContainer}>
+          {randomPokemon1 && <MiniPokemonCard pokemon={randomPokemon1} />}
+          {randomPokemon2 && <MiniPokemonCard pokemon={randomPokemon2} />}
+        </div>
+        {/* <h1>Pokedex Regions</h1>
+        <ul>
+          {regions.map((region) => (
+            <li key={region.name}>
+              <a href={`/region/${region.name}`}>{region.name}</a>
+            </li>
+          ))}
+        </ul>
+        <h1>Pokemon Types</h1>
+        <ul>
+          {types.map((type) => (
+            <li key={type.name}>
+              <a href={`/type/${type.name}`}>{type.name}</a>
+            </li>
+          ))}
+        </ul>
+        <PokemonList /> */}
       </main>
     </>
   );

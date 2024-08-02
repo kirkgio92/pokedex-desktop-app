@@ -13,15 +13,22 @@ const MiniPokemonCard = ({ pokemon }) => {
     return id.toString().padStart(4, "0");
   };
 
+  const pokemonImage =
+    pokemon.sprites.other?.showdown?.front_default ||
+    pokemon.sprites.front_default ||
+    pokemon.sprites.other?.dream_world?.front_default ||
+    "/pokeball.png";
+
   return (
     <>
       <div className={styles.MiniPokemonCard}>
         <Image
           className={styles.pokemonImage}
-          src={pokemon.sprites.other.dream_world.front_default}
-          width={60}
-          height={60}
+          src={pokemonImage}
+          width={120}
+          height={120}
           alt={pokemon.name}
+          unoptimized={pokemonImage.endsWith(".gif")}
         />
         <div className={styles.infoWrapper}>
           <p>{formatPokemonId(pokemon.id)}</p>
@@ -35,8 +42,8 @@ const MiniPokemonCard = ({ pokemon }) => {
                 <Image
                   key={type}
                   src={iconUrl}
-                  width={20}
-                  height={20}
+                  width={30}
+                  height={30}
                   alt={type}
                 />
               );
