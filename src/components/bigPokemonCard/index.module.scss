@@ -1,0 +1,86 @@
+.container {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.3);
+
+  .BigPokemonCard {
+    width: 100%;
+    &.type-normal {
+      background-color: #989ea3;
+    }
+
+    &.type-fighting {
+      background-color: #ca3f64;
+    }
+
+    &.type-flying {
+      background-color: #90a9de;
+    }
+
+    &.type-poison {
+      background-color: #a36ec6;
+    }
+
+    &.type-ground {
+      background-color: #d87a48;
+    }
+
+    &.type-rock {
+      background-color: #c9b88f;
+    }
+
+    &.type-bug {
+      background-color: #93bf2d;
+    }
+
+    &.type-ghost {
+      background-color: #5568aa;
+    }
+
+    &.type-steel {
+      background-color: #56899e;
+    }
+
+    &.type-fire {
+      background-color: #ff9c56;
+    }
+
+    &.type-water {
+      background-color: #4e8fd4;
+    }
+
+    &.type-grass {
+      background-color: #61ba5b;
+    }
+
+    &.type-electric {
+      background-color: #f2d43d;
+    }
+
+    &.type-psychic {
+      background-color: #f87177;
+    }
+
+    &.type-ice {
+      background-color: #76cfbb;
+    }
+
+    &.type-dragon {
+      background-color: #0870c6;
+    }
+
+    &.type-dark {
+      background-color: #595463;
+    }
+
+    &.type-fairy {
+      background-color: #e88fee;
+    }
+  }
+}

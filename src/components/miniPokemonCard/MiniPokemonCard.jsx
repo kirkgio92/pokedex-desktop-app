@@ -1,8 +1,7 @@
-import React from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
 
-const MiniPokemonCard = ({ pokemon }) => {
+const MiniPokemonCard = ({ pokemon, onSelect }) => {
   const getTypeIconUrl = (type) => `/pokemonTypes/${type.toLowerCase()}.png`;
 
   const capitalizeFirstLetter = (string) => {
@@ -14,24 +13,28 @@ const MiniPokemonCard = ({ pokemon }) => {
   };
 
   const pokemonImage =
-    pokemon.sprites.other?.showdown?.front_default ||
-    pokemon.sprites.front_default ||
     pokemon.sprites.other?.dream_world?.front_default ||
+    pokemon.sprites.front_default ||
+    pokemon.sprites.other?.showdown?.front_default ||
     "/pokeball.png";
+
+  const handleOnClick = () => {
+    onSelect(pokemon.id);
+  };
 
   return (
     <>
-      <div className={styles.MiniPokemonCard}>
+      <div className={styles.MiniPokemonCard} onClick={handleOnClick}>
         <Image
           className={styles.pokemonImage}
           src={pokemonImage}
-          width={120}
-          height={120}
+          width={100}
+          height={100}
           alt={pokemon.name}
           unoptimized={pokemonImage.endsWith(".gif")}
         />
         <div className={styles.infoWrapper}>
-          <p>{formatPokemonId(pokemon.id)}</p>
+          <p>N. {formatPokemonId(pokemon.id)}</p>
           <h4>{capitalizeFirstLetter(pokemon.name)}</h4>
           <div className={styles.typesWrapper}>
             {pokemon.types.map((typeInfo) => {
